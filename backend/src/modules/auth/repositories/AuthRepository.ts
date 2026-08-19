@@ -1,3 +1,9 @@
+export interface IAuthRepository {
+  findByEmail(email: string): Promise<any>;
+
+  findById(id: string): Promise<any>;
+}
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
