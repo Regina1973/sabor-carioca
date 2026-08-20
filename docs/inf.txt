@@ -1,0 +1,23 @@
+auth/
+
+├── controllers
+├── services
+├── schemas
+├── dtos
+└── routes
+
+controllers
+Recebem requisições HTTP.
+
+services
+Executam regras de negócio.
+
+schemas
+Validam ou modelam dados.
+
+dtos
+Definem o formato dos dados.
+
+routes
+
+Ligam URL aos controllers.

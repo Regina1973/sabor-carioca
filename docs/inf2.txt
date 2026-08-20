@@ -1,0 +1,9 @@
+auth/
+
+├── adapters
+├── providers
+├── factories
+├── presenters
+├── handlers
+├── use-cases
+└── gateways
