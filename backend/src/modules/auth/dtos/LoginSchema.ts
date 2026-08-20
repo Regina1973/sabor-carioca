@@ -5,5 +5,3 @@ export const loginSchema = z.object({
   password: z.string().min(8),
 });
 
-export type LoginSchemaDTO =
-  z.infer<typeof loginSchema>;
