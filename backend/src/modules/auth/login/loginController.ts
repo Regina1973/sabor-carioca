@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { LoginSchema } from "../schemas/LoginSchema";
+import { LoginSchema } from "./LoginSchema";
 
 export class LoginController {
   async handle(
