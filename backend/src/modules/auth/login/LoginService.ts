@@ -1,8 +1,13 @@
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+import { AuthRepository }
+from "../repositories/AuthRepository";
+
 export class LoginService {
 
-  constructor(
-    private repository: AuthRepository
-  ) {}
+  private repository =
+    new AuthRepository();
 
   async execute(
     email: string,
@@ -11,16 +16,41 @@ export class LoginService {
 
     const user =
       await this.repository
-        .findByEmail(email);
+      .findByEmail(email);
 
     if (!user) {
       throw new Error(
-        "Usuário não encontrado"
+        "Credenciais inválidas"
       );
     }
 
-    return user;
+    const passwordMatch =
+      await bcrypt.compare(
+        password,
+        user.password
+      );
 
+    if (!passwordMatch) {
+      throw new Error(
+        "Credenciais inválidas"
+      );
+    }
+
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        role: user.role
+      },
+      process.env.JWT_SECRET!,
+      {
+        expiresIn: "1d"
+      }
+    );
+
+    return {
+      user,
+      token
+    };
   }
 
 }
