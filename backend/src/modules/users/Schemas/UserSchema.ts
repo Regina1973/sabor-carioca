@@ -1,16 +1,38 @@
-import { UserModel } from "../../users/schemas/UserSchema";
+import mongoose from "mongoose";
 
-export class AuthRepository {
-  
-  async findByEmail(email: string) {
-    return await UserModel.findOne({
-      email,
-      active: true
-    });
+const UserSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    role: {
+      type: String,
+      enum: ["ADMIN", "GERENTE", "ATENDENTE"],
+      default: "ATENDENTE",
+    },
+
+    active: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    timestamps: true,
   }
+);
 
-  async findById(id: string) {
-    return await UserModel.findById(id);
-  }
-
-}
+export const UserModel =
+  mongoose.model("User", UserSchema);
