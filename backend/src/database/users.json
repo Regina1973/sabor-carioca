@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1",
+    "name": "Administrador",
+    "email": "admin@saborcarioca.com",
+    "password": "$2b$10.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "role": "ADMIN",
+    "active": true
+  }
+]
+``

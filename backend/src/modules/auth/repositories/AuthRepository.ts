@@ -1,13 +1,16 @@
-import { UserModel } from "../../users/schemas/UserSchema";
+import { UserRepository } from "../../users/repositories/UserRepository";
 
 export class AuthRepository {
+  private repository =
+    new UserRepository();
+
   async findByEmail(email: string) {
-    return await UserModel.findOne({
-      email,
-    });
+    return this.repository.findByEmail(
+      email
+    );
   }
 
   async findById(id: string) {
-    return await UserModel.findById(id);
+    return this.repository.findById(id);
   }
 }
